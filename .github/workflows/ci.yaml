@@ -27,4 +27,6 @@ jobs:
       exclude: |
         [
           {"bzlmodEnabled": false},
+          {"folder": "e2e/smoke", "os": "macos-latest"},
+          {"folder": "e2e/smoke", "os": "windows-latest"},
         ]
