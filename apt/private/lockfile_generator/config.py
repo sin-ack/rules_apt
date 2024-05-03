@@ -149,7 +149,7 @@ class Debian(Distribution):
     @override
     def pool_root_url(self, channel: Channel, snapshot: str) -> str:
         match channel:
-            case (Channel.MAIN, Channel.UPDATES):
+            case Channel.MAIN | Channel.UPDATES:
                 return f"{self.MIRROR}/archive/debian/{snapshot}"
             case Channel.SECURITY:
                 return f"{self.MIRROR}/archive/debian-security/{snapshot}"
