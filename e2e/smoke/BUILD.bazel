@@ -2,22 +2,7 @@ load("@container_structure_test//:defs.bzl", "container_structure_test")
 load("@rules_apt//apt:defs.bzl", "apt_lockfile")
 load("@rules_oci//oci:defs.bzl", "oci_image", "oci_tarball")
 load("@ubuntu_packages//:packages.bzl", ubuntu_package_layer = "debian_package_layer")
-load("@debian_packages//:packages.bzl", "debian_package", "debian_package_layer")
-
-container_image(
-    name = "docker_image",
-    base = "@docker_distroless_cc//image",
-    cmd = ["sh"],
-    debs = [debian_package("busybox-static")],
-    entrypoint = ["/bin/busybox"],
-)
-
-container_structure_test(
-    name = "docker_test",
-    configs = ["test.yaml"],
-    driver = "tar",
-    image = ":docker_image.tar",
-)
+load("@debian_packages//:packages.bzl", "debian_package_layer")
 
 oci_image(
     name = "oci_image",

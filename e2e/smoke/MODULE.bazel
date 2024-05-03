@@ -5,8 +5,43 @@ module(
 bazel_dep(name = "rules_apt", version = "")
 bazel_dep(name = "container_structure_test", version = "1.16.0")
 bazel_dep(name = "bazel_skylib", version = "1.5.0")
+bazel_dep(name = "rules_oci", version = "1.7.5")
 
 local_path_override(
     module_name = "rules_apt",
     path = "../..",
 )
+
+oci = use_extension("@rules_oci//oci:extensions.bzl", "oci")
+oci.pull(
+    name = "oci_distroless_cc",
+    # tag = "latest",
+    digest = "sha256:a9056d2232d16e3772bec3ef36b93a5ea9ef6ad4b4ed407631e534b85832cf40",  # Dec 6, 2023
+    image = "gcr.io/distroless/cc-debian12",
+    platforms = ["linux/amd64"],
+)
+use_repo(oci, "oci_distroless_cc")
+oci.pull(
+    name = "oci_ubuntu_base",
+    # tag = "latest",
+    digest = "sha256:f9d633ff6640178c2d0525017174a688e2c1aef28f0a0130b26bd5554491f0da",  # Feb 23, 2024
+    image = "mirror.gcr.io/library/ubuntu",
+    platforms = ["linux/amd64"],
+)
+use_repo(oci, "oci_ubuntu_base")
+
+apt = use_extension("@rules_apt//apt:extensions.bzl", "apt")
+apt.repository(
+    name = "debian_packages",
+    default_arch = "amd64",
+    default_distro = "debian12",
+    lock_file = "//:debian-packages.lock",
+)
+use_repo(apt, "debian_packages")
+apt.repository(
+    name = "ubuntu_packages",
+    default_arch = "amd64",
+    default_distro = "ubuntu2204",
+    lock_file = "//:ubuntu-packages.lock",
+)
+use_repo(apt, "ubuntu_packages")
