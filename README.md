@@ -20,7 +20,7 @@ A ruleset for downloading .deb packages, and including their contents as layers 
 
 From the release you wish to use:
 <https://github.com/sin-ack/rules_apt/releases>
-copy the WORKSPACE snippet into your `WORKSPACE` file.
+copy the Bzlmod snippet into your `MODULE.bazel` file.
 
 To use a commit rather than a release, you can point at any SHA of the repo.
 
