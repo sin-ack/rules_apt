@@ -24,3 +24,7 @@ jobs:
           ".",
           "e2e/smoke"
         ]
+      exclude: |
+        [
+          {"bzlmodEnabled": false},
+        ]
