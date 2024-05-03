@@ -79,7 +79,6 @@ apt_lockfile(
 apt_lockfile(
     name = "ubuntu_packages",
     lock_file = "ubuntu-packages.lock",
-    mirror = "https://snapshot.ubuntu.com",
     packages_file = "ubuntu-packages.yaml",
     snapshots_file = "ubuntu-snapshots.yaml",
 )

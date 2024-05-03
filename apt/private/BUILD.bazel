@@ -13,6 +13,7 @@ bzl_library(
     visibility = ["//:__subpackages__"],
     deps = [
         "@bazel_skylib//rules:write_file",
+        "@rules_apt//apt/private:lockfile",
     ],
 )
 
@@ -21,6 +22,15 @@ bzl_library(
     srcs = ["lockfile.bzl"],
     visibility = ["//apt:__subpackages__"],
     deps = ["@bazel_skylib//rules:write_file"],
+)
+
+bzl_library(
+    name = "apt_repository",
+    visibility = ["//:__subpackages__"],
+    deps = [
+        "@rules_apt//apt/private:repository",
+        "@rules_apt//apt/private:utils",
+    ],
 )
 
 bzl_library(
@@ -34,6 +44,7 @@ bzl_library(
     name = "repository",
     srcs = ["repository.bzl"],
     visibility = ["//apt:__subpackages__"],
+    deps = ["@rules_apt//apt/private:utils"],
 )
 
 bzl_library(
