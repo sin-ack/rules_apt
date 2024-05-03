@@ -1,6 +1,6 @@
 # `packages.yaml`
 
-This file is used to define which packages to make available in your `WORKSPACE` and finely control, among other things, dependency-resolution.
+This file is used to define which packages to make available in your workspace and finely control, among other things, dependency-resolution.
 
 ## `distros`
 
@@ -30,7 +30,7 @@ Possible values:
 
 ## `packages`
 
-This `list` defines which packages to make available in your `WORKSPACE`.
+This `list` defines which packages to make available in your workspace.
 
 ## `exclude_packages`
 

@@ -18,21 +18,21 @@ apt_repository(<a href="#apt_repository-name">name</a>, <a href="#apt_repository
 
 A repository rule to download .deb packages using Bazel's downloader.
 
-Typical usage in `WORKSPACE.bazel`:
+Typical usage in `MODULE.bazel`:
 
 ```starlark
-load("@rules_apt//apt:defs.bzl", "apt_repository")
+bazel_dep(name = "rules_apt", version = "1.2.3")
 
-apt_repository(
+# ...
+
+apt = use_extension("@rules_apt//apt:extensions.bzl", "apt")
+apt.repository(
     name = "my_debian_packages",
     default_arch = "amd64",
     default_distro = "debian12",
     lock_file = "//path/to:debian_packages.lock",
 )
-
-load("@my_debian_packages//:packages.bzl", "install_deps")
-
-install_deps()
+use_repo(apt, "my_debian_packages")
 ```
 
 
