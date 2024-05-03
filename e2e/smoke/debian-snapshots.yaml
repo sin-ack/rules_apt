@@ -1,2 +1,3 @@
-main: 20240222T093007Z
-security: 20240223T175703Z
+debian-bookworm-main: 20240501T024440Z
+debian-bookworm-security: 20240501T020430Z
+debian-bookworm-updates: 20240501T024440Z
